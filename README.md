@@ -1,4 +1,4 @@
-# lazy-load
+# zsh-lazy-load
 
 Adds a function *_lazy_load* that loads a zsh completion when pressing tab instead of at zsh shell startup time.
 
