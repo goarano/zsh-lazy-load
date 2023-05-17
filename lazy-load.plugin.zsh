@@ -11,6 +11,7 @@ function _lazy_load() {
             unfunction \"\$0\"
             unfunction \"$func_name\"
             unfunction \"_$func_name\"
+            unset \"_comps[$func_name]\"
             source <($comp_cmd) # Load auto-completion
         }
 
@@ -22,7 +23,7 @@ function _lazy_load() {
         #compdef $func_name
         function _$func_name() {
             _init_$func_name
-            if typeset -f $func_name > /dev/null; then
+            if ! compctl -L $func_name &>/dev/null; then
                 \$0 \"\$@\" # Execute original command
             fi
         }
