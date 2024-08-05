@@ -24,7 +24,7 @@ function _lazy_load() {
         function _$func_name() {
             _init_$func_name
             if ! compctl -L $func_name &>/dev/null; then
-                \$0 \"\$@\" # Execute original command
+                eval \"\$_comps[$func_name] \\\"\$@\\\"\" # Execute completion function
             fi
         }
 
