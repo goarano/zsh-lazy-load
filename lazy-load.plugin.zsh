@@ -23,8 +23,9 @@ function _lazy_load() {
         #compdef $func_name
         function _$func_name() {
             _init_$func_name
-            if ! compctl -L $func_name &>/dev/null; then
-                eval \"\$_comps[$func_name] \\\"\$@\\\"\" # Execute completion function
+            eval \$_comps[$func_name] \"\$@\" # Execute completion function
+            if [[ -z \"\$_comps[$func_name]\" ]]; then
+                compdef _$func_name $func_name # Needed if the comp_cmd uses autoload
             fi
         }
 
